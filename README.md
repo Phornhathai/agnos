@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Real-time Patient Form + Staff View (Next.js + Tailwind + WebSockets)
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project implements two synchronized interfaces:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Patient Form**: a responsive form where patients can enter their personal details.
+- **Staff View**: a responsive, real-time interface for staff members to monitor information being entered in the patient form.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The two interfaces synchronize in real-time, reflecting patient input immediately on the staff view.
+The staff view also shows indicators for **Active (Filling)**, **Inactive**, and **Submitted**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+- **Framework**: Next.js (App Router) + TypeScript
+- **Styling**: TailwindCSS
+- **Real-time Communication**: WebSockets (Socket.IO)
+- **Form Validation**: react-hook-form + zod
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Code Repository & Deployed Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Code Repository**:
+- **Deployed Application**:
 
-## Deploy on Vercel
+## Setup Instructions (Local)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Node.js (LTS recommended)
+- Yarn (or npm)
+
+### Install dependencies
+
+- yarn install
+
+## Configure environment variables
+
+1) Create a file named .env.local in the project root.
+2) Add the following variable:
+  NEXT_PUBLIC_WS_URL=http://localhost:4000
+
+## Run the project (frontend + websocket server)
+
+- yarn dev
+
+## Local URLs
+
+- Frontend: http://localhost:3000
+- WebSocket server: http://localhost:4000
+
+## How to Use
+
+1. Open the application at http://localhost:3000.
+2. Enter a Session ID (e.g., ABC123).
+3. Open two tabs (or two browsers):
+4. Tab A: Continue as Patient
+5. Tab B: Continue as Staff
+6. Start typing or updating fields in the Patient Form → the Staff View updates instantly.
+
+## Bonus Features Implemented
+
+1. Debounced real-time updates
+- The patient form emits updates while typing.
+- A small debounce (~250ms) is applied to reduce event spamming while keeping the UI responsive.
+
+2. Inactive detection
+- The staff view computes inactivity using the last activity timestamp (lastActiveAt).
+- If there is no update for ~10 seconds, the status becomes Inactive automatically.
+
+3. Submitted status (highest priority)
+- When the patient clicks Submit, a final payload is sent with status Submitted.
+- Submitted overrides other statuses and remains visible even if time passes.
+
+# Development Planning Documentation
+
+Email attachment (PDF) : `development-planning.pdf`
