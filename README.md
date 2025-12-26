@@ -67,7 +67,8 @@ The staff view also shows indicators for **Active (Filling)**, **Inactive**, and
 ### Deployed URL:
 
 https://agnos-phornhathai-server.onrender.com/
-The server listens on Render’s assigned port via process.env.PORT (Render sets this automatically).
+
+The server listens on Render’s assigned port via process.env.PORT.
 CORS can be configured to allow the Netlify domain if needed.
 
 ## How to Use (local)
