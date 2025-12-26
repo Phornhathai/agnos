@@ -8,6 +8,8 @@ export const getSocket = () => {
   if (socket) return socket; // Reuse existing socket
 
   const url = process.env.NEXT_PUBLIC_WS_URL as string; // Read WebSocket URL from env
+  console.log("WS URL", process.env.NEXT_PUBLIC_WS_URL);
+
   socket = io(url, { transports: ["websocket"] }); // Connect and force websocket transport
 
   return socket; // Return socket instance

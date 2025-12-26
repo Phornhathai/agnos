@@ -6,6 +6,7 @@
     "dev": "concurrently \"yarn dev:next\" \"yarn dev:ws\"",
     "dev:next": "next dev",
     "dev:ws": "tsx watch server/index.ts",
+    "server:start": "tsx server/index.ts",
     "lint": "eslint"
   },
   "dependencies": {

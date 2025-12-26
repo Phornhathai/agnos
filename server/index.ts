@@ -19,6 +19,7 @@ const io = new Server(httpServer, {
   // Create Socket IO on top of the HTTP server
   cors: { origin: "*" }, // Allow all origins in dev restrict this in production
 });
+const PORT = Number(process.env.PORT) || 4000;
 
 io.on("connection", (socket) => {
   // Run when a client connects patient or staff
@@ -37,8 +38,6 @@ io.on("connection", (socket) => {
     io.to(payload.sessionId).emit("staff:update", payload); // Send the submitted data to staff in the same room
   });
 });
-
-httpServer.listen(4000, () => {
-  // Start the server on port 4000
-  console.log("WebSocket server listening on http://localhost:4000"); // Print the server URL
+httpServer.listen(PORT, () => {
+  console.log(`WebSocket server listening on port ${PORT}`); // log port only
 });
