@@ -52,6 +52,21 @@ The staff view also shows indicators for **Active (Filling)**, **Inactive**, and
 - Frontend: http://localhost:3000
 - WebSocket server: http://localhost:4000
 
+## Deployment Setup (Netlify + Render)
+### Frontend (Netlify)
+- Deployed URL:
+https://agnos-phornhathai-fe-demo.netlify.app/
+- Netlify environment variable:
+NEXT_PUBLIC_WS_URL=https://agnos-phornhathai-server.onrender.com
+Important: NEXT_PUBLIC_* variables are embedded at build time, so redeploy the site after updating env vars.
+
+## WebSocket Server (Render)
+### Deployed URL:
+https://agnos-phornhathai-server.onrender.com/
+The server listens on Render’s assigned port via process.env.PORT (Render sets this automatically).
+CORS can be configured to allow the Netlify domain if needed.
+
+
 ## How to Use
 
 1. Open the application at http://localhost:3000.
