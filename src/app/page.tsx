@@ -53,7 +53,6 @@ export default function LoginPage() {
             เพื่อให้เห็นข้อมูลชุดเดียวกัน
           </p>
         </div>
-
         <div className="flex flex-col md:flex-row gap-2">
           <button
             onClick={() => handleGo("patient")} // Go to patient page
